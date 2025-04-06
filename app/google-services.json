@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "93093172533",
+    "project_id": "zappy-e2827",
+    "storage_bucket": "zappy-e2827.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93093172533:android:3f09075a0ee2fc963a287c",
+        "android_client_info": {
+          "package_name": "vcmsa.projects.zappy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaNPxiFmmK_wgSgiDaLqtJ_l473EmFIfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
