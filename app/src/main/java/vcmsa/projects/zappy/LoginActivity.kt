@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var textViewRegisterLink: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        ThemeHelper.applyTheme(ThemeHelper.getTheme(this))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
