@@ -10,6 +10,10 @@
         android:icon="@drawable/baseline_add_circle_24" android:title="Create" />
 
     <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_search" android:title="Search" />
+
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/baseline_3p_24" android:title="Profile" />
 

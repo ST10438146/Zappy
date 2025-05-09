@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,26 +24,31 @@ class MainActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         buttonLogout = findViewById(R.id.buttonLogout)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val fabCreatePost = findViewById<FloatingActionButton>(R.id.fab_create_post)
 
-        // Load the default fragment (e.g., the feed fragment)
+        // Load the default fragment
         loadFragment(FeedFragment())
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    loadFragment(FeedFragment()) // Replace with your feed fragment
+                    loadFragment(FeedFragment()) // Replace with feed fragment
                     true
                 }
                 R.id.navigation_create_post -> {
-                    loadFragment(CreatePostFragment()) // Create this fragment in the next step
+                    loadFragment(CreatePostFragment()) // Creates fragment
                     true
                 }
                 R.id.navigation_profile -> {
-                    loadFragment(ProfileFragment()) // Replace with your profile fragment
+                    loadFragment(ProfileFragment()) // Replace with profile fragment
                     true
                 }
                 else -> false
             }
+
         }
+        fabCreatePost.setOnClickListener {
+            loadFragment(CreatePostFragment())
+            }
         fun loadFragment(fragment: Fragment) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)

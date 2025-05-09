@@ -78,6 +78,12 @@
             android:layout_marginTop="24dp"
             android:layout_gravity="center_horizontal" />
 
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dark Mode"
+            android:layout_marginTop="16dp"/>
     </LinearLayout>
 
 </ScrollView>

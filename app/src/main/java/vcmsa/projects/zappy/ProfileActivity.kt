@@ -32,6 +32,7 @@ import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.ByteArrayOutputStream
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -44,12 +45,14 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var recyclerViewUserPosts: RecyclerView
     private lateinit var userPostsAdapter: PostAdapter
     private lateinit var buttonLogout: Button
+    private lateinit var switchTheme: SwitchMaterial
 
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
     private val storageRef = FirebaseStorage.getInstance().reference
     private val currentUser = auth.currentUser
     private var profileImageUri: Uri? = null
+
 
     private val galleryPermissionResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { permissionGranted ->
@@ -78,6 +81,16 @@ class ProfileActivity : AppCompatActivity() {
         ThemeHelper.applyTheme(ThemeHelper.getTheme(this))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        val currentTheme = ThemeHelper.getTheme(this)
+        switchTheme.isChecked = (currentTheme == ThemeHelper.DARK_MODE)
+
+        switchTheme.setOnCheckedChangeListener { _, isChecked ->
+            val newTheme = if (isChecked) ThemeHelper.DARK_MODE else ThemeHelper.LIGHT_MODE
+            ThemeHelper.applyTheme(newTheme)
+            ThemeHelper.saveTheme(this, newTheme)
+            // Recreates the activity to apply the theme change immediately
+            recreate()
+        }
 
         imageViewProfilePic = findViewById(R.id.imageViewProfilePic)
         buttonUpdateProfilePic = findViewById(R.id.buttonUpdateProfilePic)
@@ -94,6 +107,7 @@ class ProfileActivity : AppCompatActivity() {
 
         loadUserProfile()
         loadUserPosts()
+
 
         imageViewProfilePic.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
